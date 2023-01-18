@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet"> 
+    <title>Technical Documentation</title>
+</head>
+<body> 
+    <nav id="navbar">
+        <header><h2>Compilers</h2></header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction"><h3>Introduction</h3></a></li>
+            <li><a class="nav-link" href="#What_is_a_compiler?"><h3>What is a compiler?</h3></a></li>
+            <li><a class="nav-link" href="#Parts_of_a_compiler"><h3>Parts of a compiler</h3></a></li>
+            <li><a class="nav-link" href="#Parsing_phases_of_a_compiler"><h3>Parsing phases of a compiler</h3></a></li></li>
+            <li><a class="nav-link" href="#Caches_and_Queues"><h3>Caches and Queues</h3></a></li>
+            <li><a class="nav-link" href="#Compiled_VS._Interpreted_languages"><h3>Compiled VS. Interpreted languages</h3></a></li>
+            <li><a class="nav-link" href="#Native_or_hosted_compiler"><h3>Native or hosted compiler</h3></a></li>
+            <li><a class="nav-link" href="#Source-to-Source_compilers"><h3>Source-to-Source compilers</h3></a></li>
+            <li><a class="nav-link" href="#Bytecode_compilers"><h3>Bytecode compilers</h3></a></li>
+            <li><a class="nav-link" href="#Just-in-time_compiler"><h3>Just-in-time compiler</h3></a></li>
+            <li><a class="nav-link" href="#Hardware_compilers"><h3>Hardware compilers</h3></a></li>
+            <li><a class="nav-link" href="#Assembler"><h3>Assembler</h3></a></li>
+    </ul>
+    </nav> 
+    <main id="main-doc">
+        <section class="main-section" id="Introduction">
+            <header><h1>Introduction</h1></header>
+            <p>A compiler is a program that translates human-readable source code into computer-executable machine code. To do this successfully, the human-readable code must comply with the syntax rules of whichever programming language it is written in. The compiler is only a program and cannot fix your code for you. If you make a mistake, you have to correct the syntax or it won't compile. </p>
+        </section>
+        <section class="main-section" id="What_is_a_compiler?">
+            <header><h1>What is a compiler?</h1> </header>
+            <p>A compiler's complexity depends on the syntax of the language and how much abstraction that programming language provides. A C compiler is much simpler than a compiler for C++ or C#.</p>
+        </section>
+        <section class="main-section" id="Parts_of_a_compiler">
+            <header><h1>Parts of a compiler</h1></header>
+              <ul>
+                <li> 
+                  <h4>Front-end</h4>
+                  <p>The "parser" is in charge of performing the analysis of the source code to be compiled, validates it and interacts with the user. In addition, it is usually independent of the platform on which you work.</p>
+                </li>
+                <li> 
+                  <h4>Back-end</h4>
+                  <p>It is the part of the compiler that, based on the analysis results, is responsible for generating the code for the machine according to the specific platform</p>
+                </li>
+                </ul>
+        </section>
+        <section class="main-section" id="Parsing_phases_of_a_compiler">
+            <header><h1>Parsing phases of a compiler</h1></header>
+            <ul>
+                <li> 
+                  <h4>Lexical Analysis</h4>
+                  <p>When compiling, the compiler first reads a stream of characters from a source code file and generates a stream of lexical tokens. For example, the C++ code:</p>
+                  <code>
+                    <p id="calculate">int C= (A*B)+10;</p>
+                  </code> 
+                  <code>
+                    <ul id="steps">
+                        <li>type "int"</li>
+                        <li>variable "C"</li>
+                        <li>equals</li>
+                        <li>leftbracket</li>
+                        <li>variable "A"</li>
+                        <li>times</li>
+                        <li>variable "B"</li>
+                        <li>rightbracket</li>
+                        <li>plus</li>
+                        <li>literal "10"</li>
+                  </ul>
+                </code>
+                </li>
+                <li> 
+                  <h4>Syntatical Analysis</h4>
+                  <p>The lexical output goes to the syntactical analyzer part of the compiler, which uses the rules of grammar to decide whether the input is valid or not. Unless variables A and B were previously declared and were in scope, the compiler might say: </p>
+                  <ul>
+                    <code>
+                        <li>'A' : undeclared identifier.</li>
+                    </code>
+                  </ul>
+                  <p>If they were declared but not initialized. the compiler issues a warning: </p>
+                  <ul>
+                    <code>
+                        <li>local variable 'A' used without being initialized.</li>
+                    </code>
+                  </ul>
+                  <p>You should never ignore compiler warnings. They can break your code in weird and unexpected ways. Always fix compiler warnings. </p>
+                </li>
+                <li>
+                    <h4> Semantic Analysis</h4>
+                    <p>The hierarchical structure determined by the syntactic analysis phase is used to identify possible semantic errors.</p>
+                </li>
+                <li> 
+                    <h4>Intermediate code generator</h4>
+                    <p>After the analysis phases, an intermediate code representation for an abstract machine is generated.</p>
+                </li>
+                <li>
+                    <h4>Code optimization</h4>
+                    <p>Improved intermediate code rendering for faster code to execute</p>
+                </li>
+                </ul>            
+        </section>
+        <section class="main-section" id="Caches_and_Queues">
+            <header><h1>Caches and Queues</h1></header>
+            <p>Most CPUs have a pre-fetch queue where the CPU reads instructions into the cache before executing them. If a conditional branch happens, the CPU has to reload the queue. The code should be generated to minimize this. <br> Many CPUs have separate parts for:</p>
+            <code>
+                <ul>
+                   <li id="emp">Integer arithmetic (whole numbers)</li>
+                   <li id="emp">Floating point arithmetic (fractional numbers)</li>
+                </ul>
+            </code> 
+            <p>These operations can often run in parallel to increase speed. <br> Compilers typically generate machine code into object files that are then linked together by a linker program. </p>
+        </section>
+        <section class="main-section" id="Compiled_VS._Interpreted_languages">
+            <header> <h1>Compiled VS. Interpreted languages</h1></header>
+            <p>Higher-level programming languages usually appear with a type of translation in mind: either designed as compiled language or interpreted language. However, in practice there is rarely anything about a language that requires it to be exclusively compiled or exclusively interpreted, although it is possible to design languages that rely on re-interpretation at run time. <br>Interpretation does not replace compilation completely. It only hides it from the user and makes it gradual. Even though an interpreter can itself be interpreted, a directly executed program is needed somewhere at the bottom of the execution stack (see machine language). <br>Furthermore, for optimization compilers can contain interpreter functionality, and interpreters may include ahead of time compilation techniques.</p>
+        </section>
+        <section class="main-section" id="Native_or_hosted_compiler">
+            <header> <h1>Native or hosted compiler</h1></header>
+            <p>A native or hosted compiler is one whose output is intended to directly run on the same type of computer and operating system that the compiler itself runs on. The output of a cross compiler is designed to run on a different platform. Cross compilers are often used when developing software for embedded systems that are not intended to support a software development environment. <br>The output of a compiler that produces code for a virtual machine (VM) may or may not be executed on the same platform as the compiler that produced it. For this reason, such compilers are not usually classified as native or cross compilers. <br>The lower level language that is the target of a compiler may itself be a high-level programming language. C, viewed by some as a sort of portable assembly language, is frequently the target language of such compilers. </p>
+        </section>
+        <section class="main-section" id="Source-to-Source_compilers">
+            <header><h1>Source-to-Source compilers</h1></header>
+            <p>Are a type of compiler that takes a high-level language as its input and outputs a high-level language.</p>
+        </section>
+        <section class="main-section" id="Bytecode_compilers">
+            <header> <h1>Bytecode compilers</h1></header>
+            <p>This compilers compile to assembly language of a theoretical machine, like some Prolog implementations</p>
+            <code>
+                <ul>
+                    <li>This Prolog machine is also known as the Warren Abstract Machine (or WAM).</li>
+                    <li>Bytecode compilers for Java, Python are also examples of this category.</li>
+                </ul>
+            </code>
+        </section>
+        <section class="main-section" id="Just-in-time_compiler">
+            <header><h1>Just-in-time compiler</h1></header>
+            <p>JIT compiler defer compilation until runtime. JIT compilers exist for many modern languages including Python, JavaScript, Smalltalk, Java, Microsoft .NET's Common Intermediate Language (CIL) and others. A JIT compiler generally runs inside an interpreter. When the interpreter detects that a code path is "hot", meaning it is executed frequently, the JIT compiler will be invoked and compile the "hot" code for increased performance. </p>
+        </section>
+        <section class="main-section" id="Hardware_compilers">
+            <header><h1>Hardware compilers</h1></header>
+            <p>Are compilers whose input is a hardware description language and whose output is a description, in the form of a netlist or otherwise, of a hardware configuration. <br>The output of these compilers target computer hardware at a very low level, for example a field-programmable gate array (FPGA) or structured application-specific integrated circuit (ASIC). Such compilers are said to be hardware compilers, because the source code they compile effectively controls the final configuration of the hardware and how it operates. The output of the compilation is only an interconnection of transistors or lookup tables.</p>
+        </section>
+        <section class="main-section" id="Assembler">
+            <header><h1>Assembler</h1></header>
+            <p>Is a program that compiles human readable assembly language to machine code, the actual instructions executed by hardware. The inverse program that translates machine code to assembly language is called a disassembler.</p>
+        </section>
+    </main>  
+</body>
+</html>
